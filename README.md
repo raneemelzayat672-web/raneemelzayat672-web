@@ -1,18 +1,21 @@
-
-// Example token verification & RBAC middleware snippet
-const jwt = require('jsonwebtoken');
-
-function verifyRole(requiredRole) {
-  return (req, res, next) => {
-    const token = req.headers.authorization?.split(' ')[1];
-    if (!token) return res.status(401).json({ error: 'Access token missing' });
-
-    try {
-      const decoded = jwt.verify(token, process.en# AI-Powered Threat Intelligence & Automated Incident Response Platform
+# AI-Powered Threat Intelligence & Automated Incident Response Platform
 
 ## 🛡️ Raneem's Cybersecurity & Backend Contributions
 
 A secure backend and threat-response architecture built with Node.js, Express, and MongoDB.
+
+---
+
+### 📂 Repository Structure & Architecture (`threat-platform-backend`)
+Our codebase is structured modularly to ensure clean separation of concerns, secure routing, and robust data handling:
+* **`.github/workflows/`**: CI/CD automation pipelines (e.g., `backend-ci.yml`) for automated testing and building.
+* **`docs/`**: Project documentation and architecture notes.
+* **`middleware/`**: Custom security and request-handling middleware (JWT authentication, role-based access control, input validation, and request tracing).
+* **`models/`**: Mongoose database schemas defining data structures for users, devices, security events, alerts, and response simulations.
+* **`routes/`**: API endpoints handling authentication, device management, threat telemetry, alerts status updates, and response triggers.
+* **`scripts/`**: Setup utility scripts (such as `createAdmin.js`) for initializing secure administrator accounts.
+* **`services/`**: Business logic layer implementing threat detection workflows and mitigation handling.
+* **`tests/`**: Automated API regression tests to verify endpoint security and response accuracy.
 
 ---
 
@@ -32,8 +35,18 @@ git push origin main
 ### 2. Authentication & Role-Based Access Control (RBAC)
 * **Overview:** Developed secure user registration, login/logout mechanisms with JWT, password hashing, and strict role segregation.
 * **Roles Implemented:** `Admin`, `Analyst`, `Viewer`.
-* **Sample Authentication Route Integration:**
-```javascriptv.JWT_SECRET);
+* **Sample Authentication Route Integration (`middleware/` & `routes/`):**
+```javascript
+// Example token verification & RBAC middleware snippet
+const jwt = require('jsonwebtoken');
+
+function verifyRole(requiredRole) {
+  return (req, res, next) => {
+    const token = req.headers.authorization?.split(' ')[1];
+    if (!token) return res.status(401).json({ error: 'Access token missing' });
+
+    try {
+      const decoded = jwt.verify(token, process.env.JWT_SECRET);
       if (decoded.role !== requiredRole && decoded.role !== 'admin') {
         return res.status(403).json({ error: 'Unauthorized access' });
       }
@@ -70,7 +83,7 @@ app.use((err, req, res, next) => {
 
 ### 4. Concurrency & Duplicate Prevention
 * **Overview:** Engineered database constraints, unique indexes, and logic to prevent duplicate open alerts and race conditions during simultaneous incoming requests.
-* **Sample Unique Index Constraint (MongoDB):**
+* **Sample Unique Index Constraint (`models/`):**
 ```javascript
 // Ensuring no duplicate open alerts for the same threat signature
 alertSchema.index({ threatId: 1, status: 1 }, { 
@@ -85,4 +98,4 @@ alertSchema.index({ threatId: 1, status: 1 }, {
 * **Backend:** Node.js, Express.js
 * **Database & Indexing:** MongoDB, Mongoose Unique Constraints
 * **Security & Core Domains:** RBAC, JWT Authentication, API Hardening, Concurrency Control
-* **Tools:** Git, GitHub, VS Code, Linux
+* **Tools & Environment:** Git, GitHub, VS Code, Linux, GitHub Actions CI
