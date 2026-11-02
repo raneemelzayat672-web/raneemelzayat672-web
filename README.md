@@ -1,6 +1,6 @@
-### 👋 Hello there, I'm Raneem!
+###  Hello there, I'm Raneem!
 
-I am a **Cybersecurity Specialist** currently collaborating with a team of 4 members on an advanced graduation project:
+I am a **Cybersecurity Specialist** currently collaborating with a team of 8 members on an advanced graduation project:
 
 > 🚀 **AI-Powered Threat Intelligence & Automated Incident Response Platform**
 
@@ -18,4 +18,4 @@ I am a **Cybersecurity Specialist** currently collaborating with a team of 4 mem
 * **Development & Backend:** Node.js, Express.js (supporting secure API integrations)
 * **Database & Monitoring:** MongoDB
 * **Tools:** Git, GitHub, VS Code, Linux, Security Frameworks
-*
+
